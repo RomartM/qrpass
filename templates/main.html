@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}"/>
+    <title>QR Pass Scanner</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="tab-camera" data="camera">Camera</li>
+                <li class="tab-link" data-tab="tab-file" data="file">File</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="modal">
+            <div class="modal-overlay modal-toggle"></div>
+            <div class="modal-wrapper modal-transition">
+            <div class="modal-header">
+                <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+                <h2 class="modal-heading">Before to Start</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-content">
+                    <p>To be able to use the app please allow camera permission access.</p>
+                    <div class="feedback-container"></div>
+                    <button class="request-camera-permission">Allow Camera Permission</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="tab-container container">
+            <div id="tab-camera" class="tab-content current">
+                <div class="camera-region">
+                    <div class="selected-camera"></div>
+                    <select class="select-cameras" disabled></select>
+                    <button class="start-scan" disabled>Start Scan</button>
+                    <button class="stop-scan" disabled>Stop Scan</button>
+                </div>
+            </div>
+            <div id="tab-file" class="tab-content">
+                <div class="file-region">
+                    <input type="file" class="file-input-image" accept="image/*" disabled>
+                </div>
+            </div>
+        </div>
+        <!-- container -->
+        <div class="result-container container">
+            <div class="feedback-container"></div>
+            <div class="video-display">
+                <div class="status-container"></div>
+                <div id="reader"></div>
+            </div>
+            <div class="response-container">
+                <div class="status-200">
+                    <img class="user-profile" src="https://lh3.googleusercontent.com/proxy/FxNv4UexRsvd8nrF4iP_SpI4OQCmluHVOhuJtL2_sR6zjrkaV9SV49cydlaSldLF-vUVEFWl_3q9LP-e_OVAp14zRQEDu4R32jUkLbZHwgnEmt1tkw" alt="User Name" />
+                    <div class="user-name">John Doe</div>
+                    <div class="user-position">Instructor 1</div>
+                    <div class="user-id">P-SAMPLE</div>
+                    <div class="response-text">Passed</div>
+                </div>
+                <div class="status-error">
+                    <div class="response-text"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <audio id="beepSound">
+            <source src="{% static 'sound/beep.ogg' %}" type="audio/ogg">
+            <source src="{% static 'sound/beep.mp3' %}" type="audio/mpeg">
+        </audio>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/html5qrcode.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
